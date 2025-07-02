@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PWS Limited - Cybersecurity & Cloud Storage Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css">
-    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
-    
+    <title>PWS Limited - Secure. Scalable. Compliant.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Reset and Base Styles */
         * {
@@ -22,9 +20,9 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: #333333;
             line-height: 1.6;
+            color: #333333;
+            background-color: #ffffff;
             overflow-x: hidden;
         }
 
@@ -34,7 +32,7 @@
             padding: 0 20px;
         }
 
-        /* Loading Screen */
+        /* Loading Spinner */
         .loader {
             position: fixed;
             top: 0;
@@ -43,36 +41,21 @@
             height: 100%;
             background: #ffffff;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
+            z-index: 10000;
             transition: opacity 0.5s ease;
         }
 
-        .loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loader-content {
-            text-align: center;
-        }
-
-        .loader-logo {
-            width: 100px;
-            height: 100px;
-            border: 4px solid rgba(255, 145, 0, 0.3);
-            border-top: 4px solid #ff9100;
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #00aaff;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        .loader-text {
-            color: #ff9100;
-            font-size: 1.2rem;
-            font-weight: 600;
-            animation: pulse 1.5s ease-in-out infinite;
+            margin-bottom: 20px;
         }
 
         @keyframes spin {
@@ -80,46 +63,9 @@
             100% { transform: rotate(360deg); }
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* Particle Background */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .loader.hidden {
+            opacity: 0;
             pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #ff9100;
-            border-radius: 50%;
-            animation: float-particle 20s linear infinite;
-        }
-
-        @keyframes float-particle {
-            0% {
-                transform: translateY(100vh) translateX(0px);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-100px) translateX(100px);
-                opacity: 0;
-            }
         }
 
         /* Navigation */
@@ -128,16 +74,10 @@
             top: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-bottom: 1px solid rgba(255, 145, 0, 0.1);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 31, 63, 0.1);
         }
 
         .nav-container {
@@ -147,52 +87,44 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 70px;
         }
 
-        .logo-img {
-            height:185px;
+        .logo {
+            height: 40px;
             width: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .logo-img:hover {
-            transform: scale(1.05);
         }
 
         .nav-menu {
             display: flex;
-            gap: 40px;
+            list-style: none;
+            gap: 30px;
         }
 
-        .nav-link {
-            color: #333333;
+        .nav-menu a {
             text-decoration: none;
+            color: #001f3f;
             font-weight: 500;
-            font-size: 1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: color 0.3s ease;
             position: relative;
-            padding: 10px 0;
         }
 
-        .nav-link::before {
+        .nav-menu a:hover {
+            color: #00aaff;
+        }
+
+        .nav-menu a::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 50%;
+            bottom: -5px;
+            left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #ff9100, #ffb347);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateX(-50%);
+            background: #00aaff;
+            transition: width 0.3s ease;
         }
 
-        .nav-link:hover {
-            color: #ff9100;
-            transform: translateY(-2px);
-        }
-
-        .nav-link:hover::before {
+        .nav-menu a:hover::after {
             width: 100%;
         }
 
@@ -200,206 +132,478 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
-            padding: 5px;
         }
 
         .hamburger span {
             width: 25px;
             height: 3px;
-            background: #333333;
+            background: #001f3f;
             margin: 3px 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 2px;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
+            transition: 0.3s;
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            position: relative;
             display: flex;
             align-items: center;
-            justify-content: center;
+            position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
         }
 
-        .hero-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, #f8f9fa 0%, #ffffff 100%);
-        }
-
-        .matrix-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.05;
-            background-image: 
-                linear-gradient(90deg, rgba(255, 145, 0, 0.3) 1px, transparent 1px),
-                linear-gradient(rgba(255, 145, 0, 0.3) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: matrix-move 20s linear infinite;
-        }
-
-        @keyframes matrix-move {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .geometric-shapes {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .shape {
-            position: absolute;
-            background: linear-gradient(45deg, #ff9100, #ffb347);
-            opacity: 0.1;
-            animation: morph-float 8s ease-in-out infinite;
-        }
-
-        .shape-1 {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            left: 5%;
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            animation-delay: 0s;
-        }
-
-        .shape-2 {
-            width: 200px;
-            height: 200px;
-            top: 60%;
-            right: 10%;
-            clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
-            animation-delay: 2s;
-        }
-
-        .shape-3 {
-            width: 150px;
-            height: 150px;
-            top: 20%;
-            right: 25%;
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            animation-delay: 4s;
-        }
-
-        .shape-4 {
-            width: 100px;
-            height: 100px;
-            bottom: 20%;
-            left: 20%;
-            clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 100%, 0% 100%);
-            animation-delay: 6s;
-        }
-
-        @keyframes morph-float {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg) scale(1);
-                border-radius: 0%;
-            }
-            25% { 
-                transform: translateY(-30px) rotate(90deg) scale(1.1);
-                border-radius: 25%;
-            }
-            50% { 
-                transform: translateY(-60px) rotate(180deg) scale(0.9);
-                border-radius: 50%;
-            }
-            75% { 
-                transform: translateY(-30px) rotate(270deg) scale(1.1);
-                border-radius: 25%;
-            }
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
         }
 
         .hero-content {
-            text-align: center;
-            z-index: 2;
-            max-width: 900px;
-            padding: 0 20px;
+            animation: slideInLeft 1s ease-out;
         }
 
         .hero-title {
-            font-size: 5rem;
-            font-weight: 900;
-            margin-bottom: 30px;
+            font-size: 4rem;
+            font-weight: 700;
+            color: #001f3f;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-title .word {
+            display: inline-block;
             opacity: 0;
-            animation: glitch-slide-up 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
-            color: #333333;
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .title-line {
-            display: block;
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        .highlight {
-            background: linear-gradient(45deg, #ff9100, #ffb347, #ff6b35);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shift 3s ease-in-out infinite;
-        }
-
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        @keyframes glitch-slide-up {
-            0% {
-                opacity: 0;
-                transform: translateY(100px);
-            }
-            20% {
-                opacity: 0.8;
-                transform: translateY(-10px) skewX(2deg);
-            }
-            40% {
-                opacity: 1;
-                transform: translateY(5px) skewX(-1deg);
-            }
-            60% {
-                transform: translateY(-2px) skewX(0.5deg);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) skewX(0deg);
-            }
-        }
+        .hero-title .word:nth-child(1) { animation-delay: 0.2s; }
+        .hero-title .word:nth-child(2) { animation-delay: 0.4s; }
+        .hero-title .word:nth-child(3) { animation-delay: 0.6s; }
 
         .hero-subtitle {
-            font-size: 1.4rem;
-            color: #666666;
-            margin-bottom: 50px;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
             opacity: 0;
-            animation: fade-slide-up 1s cubic-bezier(0.4, 0, 0.2, 1) 1s forwards;
-            font-weight: 300;
-            letter-spacing: 0.5px;
+            animation: fadeInUp 0.8s ease-out 0.8s forwards;
         }
 
-        @keyframes fade-slide-up {
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00aaff, #0088cc);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 1s forwards;
+            box-shadow: 0 10px 30px rgba(0, 170, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 170, 255, 0.4);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 400px;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 31, 63, 0.1);
+            animation: float 6s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-card i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .card-1 {
+            width: 200px;
+            height: 120px;
+            top: 50px;
+            left: 50px;
+            background: linear-gradient(135deg, #00aaff, #0088cc);
+            animation-delay: 0s;
+        }
+
+        .card-2 {
+            width: 150px;
+            height: 100px;
+            top: 200px;
+            right: 100px;
+            background: linear-gradient(135deg, #001f3f, #003366);
+            animation-delay: 2s;
+        }
+
+        .card-3 {
+            width: 180px;
+            height: 110px;
+            bottom: 50px;
+            left: 150px;
+            background: linear-gradient(135deg, #ffffff, #f0f8ff);
+            border: 2px solid #00aaff;
+            animation-delay: 4s;
+        }
+
+        .card-3 i {
+            color: #00aaff;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid #00aaff;
+            border-bottom: 2px solid #00aaff;
+            transform: rotate(45deg);
+        }
+
+        /* Section Styles */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #001f3f;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section-title.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-line {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #00aaff, #0088cc);
+            margin: 0 auto;
+            border-radius: 2px;
+            opacity: 0;
+            transform: scaleX(0);
+            transition: all 0.8s ease 0.3s;
+        }
+
+        .section-line.animate {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: #f8faff;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .about-description.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .stat-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #00aaff;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 31, 63, 0.08);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            border: 1px solid rgba(0, 170, 255, 0.1);
+        }
+
+        .service-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 31, 63, 0.15);
+            border-color: #00aaff;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #00aaff;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #001f3f;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose-us {
+            padding: 100px 0;
+            background: #f8faff;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .benefit-item {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .benefit-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #00aaff;
+            display: block;
+        }
+
+        .benefit-item h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #001f3f;
+            margin-bottom: 15px;
+        }
+
+        .benefit-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease;
+        }
+
+        .contact-item.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00aaff, #0088cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #001f3f;
+            margin-bottom: 5px;
+        }
+
+        .contact-details p {
+            color: #666;
+        }
+
+        .contact-form {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease;
+        }
+
+        .contact-form.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00aaff;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #00aaff, #0088cc);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 170, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 170, 255, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: #001f3f;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -410,876 +614,26 @@
             }
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            opacity: 0;
-            animation: fade-slide-up 1s cubic-bezier(0.4, 0, 0.2, 1) 1.3s forwards;
-        }
-
-        .cta-button {
-            padding: 18px 40px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        .cta-button.primary {
-            background: linear-gradient(45deg, #ff9100, #ffb347);
-            color: #ffffff;
-            box-shadow: 0 10px 30px rgba(255, 145, 0, 0.3);
-        }
-
-        .cta-button.primary:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(255, 145, 0, 0.5);
-        }
-
-        .cta-button.secondary {
-            background: transparent;
-            color: #333333;
-            border: 2px solid #ff9100;
-            box-shadow: 0 10px 30px rgba(255, 145, 0, 0.1);
-        }
-
-        .cta-button.secondary:hover {
-            background: rgba(255, 145, 0, 0.1);
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(255, 145, 0, 0.3);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            animation: fade-in-bounce 1s ease 2s forwards;
-        }
-
-        .scroll-arrow {
-            width: 30px;
-            height: 30px;
-            border-right: 3px solid #ff9100;
-            border-bottom: 3px solid #ff9100;
-            transform: rotate(45deg);
-            animation: bounce-glow 2s infinite;
-        }
-
-        @keyframes fade-in-bounce {
-            0% {
+        @keyframes slideInLeft {
+            from {
                 opacity: 0;
-                transform: translateX(-50%) translateY(20px);
+                transform: translateX(-50px);
             }
-            100% {
+            to {
                 opacity: 1;
-                transform: translateX(-50%) translateY(0);
+                transform: translateX(0);
             }
         }
 
-        @keyframes bounce-glow {
-            0%, 20%, 50%, 80%, 100% { 
-                transform: translateY(0) rotate(45deg);
-                box-shadow: 0 0 0 rgba(255, 145, 0, 0.5);
-            }
-            40% { 
-                transform: translateY(-15px) rotate(45deg);
-                box-shadow: 0 0 20px rgba(255, 145, 0, 0.8);
-            }
-            60% { 
-                transform: translateY(-8px) rotate(45deg);
-                box-shadow: 0 0 10px rgba(255, 145, 0, 0.6);
-            }
-        }
-
-        /* Section Styles */
-        section {
-            padding: 120px 0;
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .section-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 25px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            color: #333333;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            width: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ff9100, #ffb347);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
-            transform: translateX(-50%);
-        }
-
-        .section-title.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-title.animate::after {
-            width: 100px;
-        }
-
-        .section-subtitle {
-            font-size: 1.3rem;
-            color: #666666;
-            max-width: 700px;
-            margin: 0 auto;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
-            font-weight: 300;
-            line-height: 1.8;
-        }
-
-        .section-subtitle.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* About Section */
-        .about {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            position: relative;
-        }
-
-        .about::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ff9100" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="%23ff9100" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .about-text {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .about-text.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .about-description {
-            font-size: 1.3rem;
-            color: #666666;
-            margin-bottom: 50px;
-            line-height: 1.9;
-            font-weight: 300;
-        }
-
-        .about-stats {
-            display: flex;
-            gap: 50px;
-        }
-
-        .stat-item {
-            text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .stat-item.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: #ff9100;
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: #666666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 500;
-        }
-
-        .about-visual {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
-        }
-
-        .about-visual.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .tech-item {
-            background: rgba(255, 145, 0, 0.05);
-            border: 2px solid rgba(255, 145, 0, 0.2);
-            border-radius: 25px;
-            padding: 50px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tech-item::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(255, 145, 0, 0.1), transparent);
-            animation: rotate-border 4s linear infinite;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .tech-item:hover::before {
-            opacity: 1;
-        }
-
-        @keyframes rotate-border {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .tech-item:hover {
-            background: rgba(255, 145, 0, 0.1);
-            border-color: #ff9100;
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 25px 50px rgba(255, 145, 0, 0.2);
-        }
-
-        .tech-item i {
-            font-size: 3.5rem;
-            color: #ff9100;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-
-        .tech-item:hover i {
-            transform: scale(1.2) rotateY(360deg);
-        }
-
-        /* Services Section */
-        .services {
-            background: #ffffff;
-            position: relative;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 40px;
-        }
-
-        .service-card {
-            background: linear-gradient(145deg, #ffffff, #f8f9fa);
-            border: 2px solid rgba(255, 145, 0, 0.1);
-            border-radius: 25px;
-            padding: 50px;
-            text-align: center;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0;
-            transform: translateY(80px) rotateX(15deg);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 145, 0, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .service-card:hover::before {
-            left: 100%;
-        }
-
-        .service-card.animate {
-            opacity: 1;
-            transform: translateY(0) rotateX(0deg);
-        }
-
-        .service-card:hover {
-            border-color: #ff9100;
-            transform: translateY(-20px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(255, 145, 0, 0.15);
-        }
-
-        .service-icon {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(45deg, #ff9100, #ffb347);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 30px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-icon::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transition: all 0.4s ease;
-            transform: translate(-50%, -50%);
-        }
-
-        .service-card:hover .service-icon {
-            transform: scale(1.15) rotateY(180deg);
-            box-shadow: 0 15px 30px rgba(255, 145, 0, 0.4);
-        }
-
-        .service-card:hover .service-icon::before {
-            width: 100%;
-            height: 100%;
-        }
-
-        .service-icon i {
-            font-size: 2.5rem;
-            color: #ffffff;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-
-        .service-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #333333;
-            transition: color 0.3s ease;
-        }
-
-        .service-card:hover .service-title {
-            color: #ff9100;
-        }
-
-        .service-description {
-            color: #666666;
-            line-height: 1.7;
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-
-        /* Why Choose Us Section */
-        .why-choose {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            position: relative;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 50px;
-        }
-
-        .feature-item {
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px) scale(0.9);
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        .feature-item.animate {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .feature-icon {
-            width: 120px;
-            height: 120px;
-            background: rgba(255, 145, 0, 0.05);
-            border: 3px solid rgba(255, 145, 0, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 30px;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: conic-gradient(from 0deg, #ff9100, #ffb347, #ff6b35, #ff9100);
-            border-radius: 50%;
-            opacity: 0;
-            transition: all 0.5s ease;
-            animation: rotate-gradient 3s linear infinite;
-        }
-
-        @keyframes rotate-gradient {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .feature-item:hover .feature-icon {
-            background: rgba(255, 145, 0, 0.1);
-            border-color: #ff9100;
-            transform: scale(1.15) rotateZ(360deg);
-            box-shadow: 0 20px 40px rgba(255, 145, 0, 0.2);
-        }
-
-        .feature-item:hover .feature-icon::before {
-            opacity: 0.2;
-        }
-
-        .feature-icon i {
-            font-size: 3rem;
-            color: #ff9100;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-
-        .feature-item:hover .feature-icon i {
-            color: #ff9100;
-            transform: scale(1.1);
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #333333;
-            transition: all 0.3s ease;
-        }
-
-        .feature-item:hover .feature-title {
-            color: #ff9100;
-            transform: translateY(-5px);
-        }
-
-        .feature-description {
-            color: #666666;
-            line-height: 1.8;
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: #ffffff;
-            position: relative;
-        }
-
-        .contact::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 70%, rgba(255, 145, 0, 0.05) 0%, transparent 50%);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact-info {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .contact-info.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            margin-bottom: 40px;
-            padding: 25px;
-            background: rgba(255, 145, 0, 0.05);
-            border-radius: 20px;
-            border: 2px solid rgba(255, 145, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .contact-item:hover {
-            background: rgba(255, 145, 0, 0.1);
-            border-color: rgba(255, 145, 0, 0.3);
-            transform: translateX(10px);
-        }
-
-        .contact-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(45deg, #ff9100, #ffb347);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover .contact-icon {
-            transform: scale(1.1) rotate(360deg);
-        }
-
-        .contact-icon i {
-            font-size: 1.8rem;
-            color: #ffffff;
-        }
-
-        .contact-details h4 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #333333;
-        }
-
-        .contact-details p {
-            color: #666666;
-            font-size: 1.1rem;
-        }
-
-        .contact-form {
-            background: linear-gradient(145deg, #ffffff, #f8f9fa);
-            padding: 50px;
-            border-radius: 25px;
-            border: 2px solid rgba(255, 145, 0, 0.1);
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        .contact-form::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ff9100, #ffb347, #ff6b35, #ff9100);
-            border-radius: 25px;
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.3s ease;
-            animation: rotate-border-form 4s linear infinite;
-        }
-
-        @keyframes rotate-border-form {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .contact-form:hover::before {
-            opacity: 0.5;
-        }
-
-        .contact-form.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .form-group {
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 2px solid rgba(255, 145, 0, 0.2);
-            border-radius: 15px;
-            color: #333333;
-            font-size: 1.1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #ff9100;
-            background: rgba(255, 255, 255, 1);
-            box-shadow: 0 0 20px rgba(255, 145, 0, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: #999999;
-            transition: color 0.3s ease;
-        }
-
-        .form-group input:focus::placeholder,
-        .form-group textarea:focus::placeholder {
-            color: #bbbbbb;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(45deg, #ff9100, #ffb347);
-            color: #ffffff;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .submit-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .submit-button:hover::before {
-            left: 100%;
-        }
-
-        .submit-button:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(255, 145, 0, 0.4);
-        }
-
-        .submit-button:active {
-            transform: translateY(-2px) scale(0.98);
-        }
-
-        /* Footer */
-        .footer {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            padding: 60px 0 30px;
-            border-top: 2px solid rgba(255, 145, 0, 0.2);
-            position: relative;
-        }
-
-        .footer-content {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .footer-content .logo-img {
-            height: 60px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .footer-content .logo-img:hover {
-            transform: scale(1.1);
-        }
-
-        .footer-text {
-            color: #666666;
-            max-width: 600px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 145, 0, 0.1);
-            color: #999999;
-            font-size: 1rem;
-        }
-
-        /* WhatsApp Float */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-        }
-
-        .whatsapp-button {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(45deg, #ff9100, #ffb347);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 8px 25px rgba(255, 145, 0, 0.3);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: float-pulse 3s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .whatsapp-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .whatsapp-button:hover::before {
-            opacity: 1;
-        }
-
-        .whatsapp-button:hover {
-            transform: scale(1.15) rotate(360deg);
-            box-shadow: 0 15px 40px rgba(255, 145, 0, 0.5);
-        }
-
-        .whatsapp-button i {
-            font-size: 1.8rem;
-            color: #ffffff;
-            transition: all 0.3s ease;
-        }
-
-        @keyframes float-pulse {
-            0%, 100% { 
-                transform: translateY(0px);
-                box-shadow: 0 8px 25px rgba(255, 145, 0, 0.3);
-            }
-            50% { 
-                transform: translateY(-10px);
-                box-shadow: 0 15px 35px rgba(255, 145, 0, 0.5);
-            }
-        }
-
-        /* Scroll to Top */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 110px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #ff9100, #ffb347);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 999;
-        }
-
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-to-top:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 145, 0, 0.4);
-        }
-
-        .scroll-to-top i {
-            font-size: 1.5rem;
-            color: #ffffff;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
         }
 
         /* Responsive Design */
@@ -1291,166 +645,94 @@
             .nav-menu {
                 position: fixed;
                 left: -100%;
-                top: 80px;
+                top: 70px;
                 flex-direction: column;
-                background: rgba(255, 255, 255, 0.98);
+                background-color: white;
                 width: 100%;
                 text-align: center;
-                transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                padding: 40px 0;
-                backdrop-filter: blur(20px);
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
             }
             
             .nav-menu.active {
                 left: 0;
             }
             
-            .nav-link {
-                padding: 15px 0;
-                font-size: 1.2rem;
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
             }
             
             .hero-title {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
             
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-            }
-            
-            .cta-button {
-                width: 250px;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-            
-            .about-stats {
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 30px;
+            .hero-visual {
+                height: 300px;
             }
             
             .contact-content {
                 grid-template-columns: 1fr;
-                gap: 50px;
+                gap: 40px;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
             
             .services-grid {
                 grid-template-columns: 1fr;
             }
             
-            .features-grid {
+            .benefits-grid {
                 grid-template-columns: 1fr;
             }
             
             .section-title {
-                font-size: 2.8rem;
-            }
-            
-            .tech-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-form {
-                padding: 40px;
-            }
-            
-            section {
-                padding: 80px 0;
+                font-size: 2rem;
             }
         }
 
         @media (max-width: 480px) {
             .hero-title {
-                font-size: 2.2rem;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             
             .container {
                 padding: 0 15px;
             }
             
-            section {
-                padding: 60px 0;
-            }
-            
             .service-card,
-            .contact-form {
-                padding: 30px;
+            .benefit-item {
+                padding: 30px 20px;
             }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .cta-button {
-                padding: 15px 30px;
-                font-size: 1rem;
-            }
-            
-            .nav-container {
-                height: 70px;
-            }
-            
-            .nav-menu {
-                top: 70px;
-            }
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #ff9100, #ffb347);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(45deg, #ffb347, #ff6b35);
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loader" id="loader">
-        <div class="loader-content">
-            <div class="loader-logo"></div>
-            <div class="loader-text">Loading PWS Limited...</div>
-        </div>
+    <!-- Loading Spinner -->
+    <div id="loader" class="loader">
+        <div class="spinner"></div>
+        <p>Loading...</p>
     </div>
 
-    <!-- Particle Background -->
-    <div class="particles" id="particles"></div>
-
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/50th%20a%20%287%29-yVDeBI6lWUhzIbA6HzOLelWxiBRjSW.png" alt="PWS Limited" class="logo-img">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMjAwIDUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz4KPHN0eWxlPgouY2xzLTEgeyBmaWxsOiAjZmZkNzAwOyB9Ci5jbHMtMiB7IGZpbGw6ICNmZjk5MDA7IH0KLmNscy0zIHsgZmlsbDogIzAwMDAwMDsgZm9udC1mYW1pbHk6IEludGVyLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDI0cHg7IGZvbnQtd2VpZ2h0OiA3MDA7IH0KPC9zdHlsZT4KPC9kZWZzPgo8cG9seWdvbiBjbGFzcz0iY2xzLTEiIHBvaW50cz0iMCwyNSAxNSwxMCAzMCwyNSAxNSw0MCAiLz4KPHN2ZyB4PSIxNSIgeT0iMTAiIHdpZHRoPSIxNSIgaGVpZ2h0PSIzMCI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjAlIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6I2ZmZDcwMDtzdG9wLW9wYWNpdHk6MSIgLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojZmY5OTAwO3N0b3Atb3BhY2l0eToxIiAvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxyZWN0IHdpZHRoPSIxNSIgaGVpZ2h0PSIzMCIgZmlsbD0idXJsKCNncmFkKSIvPgo8L3N2Zz4KPHN2ZyB4PSIzMCIgeT0iMTAiIHdpZHRoPSIxNSIgaGVpZ2h0PSIzMCI+CjxyZWN0IHdpZHRoPSIxNSIgaGVpZ2h0PSIzMCIgZmlsbD0iIzAwMDAwMCIvPgo8L3N2Zz4KPHRleHQgeD0iNjAiIHk9IjMwIiBjbGFzcz0iY2xzLTMiPlBXUyBMaW1pdGVkPC90ZXh0Pgo8L3N2Zz4=" alt="PWS Limited" class="logo">
             </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#why-choose" class="nav-link">Why Choose Us</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            <div class="hamburger" id="hamburger">
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why-choose-us">Why Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -1460,25 +742,25 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-background">
-            <div class="matrix-bg"></div>
-            <div class="geometric-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-                <div class="shape shape-4"></div>
-            </div>
-        </div>
-        <div class="hero-content">
-            <div class="hero-text">
+        <div class="hero-container">
+            <div class="hero-content">
                 <h1 class="hero-title">
-                    <span class="title-line">Secure Your Digital</span>
-                    <span class="title-line highlight">Future Today</span>
+                    <span class="word">Secure.</span>
+                    <span class="word">Scalable.</span>
+                    <span class="word">Compliant.</span>
                 </h1>
-                <p class="hero-subtitle">Advanced cybersecurity and cloud storage solutions tailored for modern businesses</p>
-                <div class="hero-buttons">
-                    <button class="cta-button primary" onclick="scrollToSection('contact')">Get Started</button>
-                    <button class="cta-button secondary" onclick="scrollToSection('about')">Learn More</button>
+                <p class="hero-subtitle">Leading provider of cybersecurity and cloud storage solutions in Africa</p>
+                <a href="#contact" class="cta-button">Contact Us</a>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card card-1">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-lock"></i>
                 </div>
             </div>
         </div>
@@ -1492,34 +774,29 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">About PWS Limited</h2>
-                <p class="section-subtitle">PWS is a leading provider of advanced cloud storage and cybersecurity services, dedicated to protecting businesses in the digital age. Our comprehensive solutions ensure your data remains secure while enabling seamless operations and growth.</p>
+                <div class="section-line"></div>
             </div>
             <div class="about-content">
                 <div class="about-text">
                     <p class="about-description">
-                        With years of expertise in cybersecurity and cloud technologies, we understand the evolving threat landscape and provide cutting-edge solutions that adapt to your business needs. Our team of certified professionals works around the clock to ensure your digital assets are protected.
+                        PWS Limited stands at the forefront of cybersecurity and cloud storage innovation in Africa. 
+                        With years of expertise and a commitment to excellence, we provide comprehensive security 
+                        solutions that protect businesses from evolving digital threats while ensuring seamless 
+                        scalability and regulatory compliance.
                     </p>
-                    <div class="about-stats">
+                    <div class="stats">
                         <div class="stat-item">
-                            <div class="stat-number" data-target="500">0</div>
-                            <div class="stat-label">Clients Protected</div>
+                            <span class="stat-number" data-target="500">0</span>
+                            <span class="stat-label">Clients Protected</span>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">99.9%</div>
-                            <div class="stat-label">Uptime Guarantee</div>
+                            <span class="stat-number" data-target="99.9">0</span>
+                            <span class="stat-label">% Uptime</span>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">24/7</div>
-                            <div class="stat-label">Support Available</div>
+                            <span class="stat-number" data-target="24">0</span>
+                            <span class="stat-label">7 Support</span>
                         </div>
-                    </div>
-                </div>
-                <div class="about-visual">
-                    <div class="tech-grid">
-                        <div class="tech-item"><i class="fi fi-br-shield"></i></div>
-                        <div class="tech-item"><i class="fi fi-br-cloud"></i></div>
-                        <div class="tech-item"><i class="fi fi-br-lock"></i></div>
-                        <div class="tech-item"><i class="fi fi-br-database"></i></div>
                     </div>
                 </div>
             </div>
@@ -1531,104 +808,75 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Our Services</h2>
-                <p class="section-subtitle">Comprehensive cybersecurity and cloud solutions designed to protect and empower your business</p>
+                <div class="section-line"></div>
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fi fi-br-certificate"></i>
-                    </div>
-                    <h3 class="service-title">Certification Support</h3>
-                    <p class="service-description">Expert guidance for security certifications and compliance requirements to meet industry standards</p>
+                    <i class="fas fa-cloud service-icon"></i>
+                    <h3>Cloud Storage</h3>
+                    <p>Secure, scalable cloud storage solutions with enterprise-grade encryption and compliance.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fi fi-br-cloud-upload"></i>
-                    </div>
-                    <h3 class="service-title">Cloud Storage</h3>
-                    <p class="service-description">Secure, scalable cloud storage solutions with enterprise-grade protection and 99.9% uptime</p>
+                    <i class="fas fa-certificate service-icon"></i>
+                    <h3>Certification Support</h3>
+                    <p>Comprehensive support for security certifications and compliance frameworks.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fi fi-br-shield-check"></i>
-                    </div>
-                    <h3 class="service-title">SECaaS</h3>
-                    <p class="service-description">Security as a Service - comprehensive protection without the overhead of managing infrastructure</p>
+                    <i class="fas fa-shield-alt service-icon"></i>
+                    <h3>SECaaS</h3>
+                    <p>Security as a Service - comprehensive security solutions delivered through the cloud.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fi fi-br-user-headset"></i>
-                    </div>
-                    <h3 class="service-title">Security Advisory</h3>
-                    <p class="service-description">Strategic security consulting to strengthen your defense posture and risk management</p>
+                    <i class="fas fa-user-shield service-icon"></i>
+                    <h3>Security Advisory</h3>
+                    <p>Expert security consulting and advisory services to strengthen your security posture.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fi fi-br-eye"></i>
-                    </div>
-                    <h3 class="service-title">Reputation Monitoring</h3>
-                    <p class="service-description">Continuous monitoring and protection of your digital reputation across all platforms</p>
+                    <i class="fas fa-chart-line service-icon"></i>
+                    <h3>Reputation Monitoring</h3>
+                    <p>Continuous monitoring and protection of your digital reputation and brand integrity.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fi fi-br-network"></i>
-                    </div>
-                    <h3 class="service-title">Network & Security Design</h3>
-                    <p class="service-description">Custom network architecture with built-in security best practices and scalability</p>
+                    <i class="fas fa-network-wired service-icon"></i>
+                    <h3>Network Design</h3>
+                    <p>Secure network architecture design and implementation for optimal performance.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fi fi-br-graduation-cap"></i>
-                    </div>
-                    <h3 class="service-title">Awareness Training</h3>
-                    <p class="service-description">Comprehensive security awareness programs to educate and protect your team</p>
+                    <i class="fas fa-graduation-cap service-icon"></i>
+                    <h3>Cybersecurity Training</h3>
+                    <p>Comprehensive training programs to enhance your team's security awareness.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Why Choose Us Section -->
-    <section id="why-choose" class="why-choose">
+    <section id="why-choose-us" class="why-choose-us">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Why Choose PWS Limited</h2>
-                <p class="section-subtitle">Discover what sets us apart in the cybersecurity and cloud storage industry</p>
+                <div class="section-line"></div>
             </div>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fi fi-br-customize"></i>
-                    </div>
-                    <h3 class="feature-title">Tailored Solutions</h3>
-                    <p class="feature-description">Custom security solutions designed specifically for your business needs and industry requirements</p>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i class="fas fa-bullseye benefit-icon"></i>
+                    <h3>Tailored Solutions</h3>
+                    <p>Customized security solutions designed specifically for your business needs and industry requirements.</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fi fi-br-time-fast"></i>
-                    </div>
-                    <h3 class="feature-title">Rapid Incident Response</h3>
-                    <p class="feature-description">Quick response times to minimize impact and restore operations with our 24/7 monitoring team</p>
+                <div class="benefit-item">
+                    <i class="fas fa-bolt benefit-icon"></i>
+                    <h3>Incident Response</h3>
+                    <p>24/7 rapid incident response team ready to address security threats and minimize business impact.</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fi fi-br-settings-sliders"></i>
-                    </div>
-                    <h3 class="feature-title">Flexible SECaaS</h3>
-                    <p class="feature-description">Scalable security services that grow with your business and adapt to changing threats</p>
+                <div class="benefit-item">
+                    <i class="fas fa-lock benefit-icon"></i>
+                    <h3>SECaaS Models</h3>
+                    <p>Flexible Security as a Service models that scale with your business growth and changing needs.</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fi fi-br-shield-plus"></i>
-                    </div>
-                    <h3 class="feature-title">Digital Presence Protection</h3>
-                    <p class="feature-description">Comprehensive protection for your online reputation and digital assets across all channels</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fi fi-br-search-heart"></i>
-                    </div>
-                    <h3 class="feature-title">End-to-End Monitoring</h3>
-                    <p class="feature-description">Complete visibility and monitoring across all your digital touchpoints with real-time alerts</p>
+                <div class="benefit-item">
+                    <i class="fas fa-star benefit-icon"></i>
+                    <h3>Digital Presence Protection</h3>
+                    <p>Comprehensive protection of your digital assets and online reputation across all platforms.</p>
                 </div>
             </div>
         </div>
@@ -1639,22 +887,13 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">Ready to secure your digital future? Contact us today for a consultation</p>
+                <div class="section-line"></div>
             </div>
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fi fi-br-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Email</h4>
-                            <p>info@pws.africa</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fi fi-br-globe"></i>
+                            <i class="fas fa-globe"></i>
                         </div>
                         <div class="contact-details">
                             <h4>Website</h4>
@@ -1663,29 +902,40 @@
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fi fi-br-time-oclock"></i>
+                            <i class="fas fa-envelope"></i>
                         </div>
                         <div class="contact-details">
-                            <h4>Support Hours</h4>
-                            <p>24/7 Available</p>
+                            <h4>Email</h4>
+                            <p>info@pws.africa</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Nairobi, Kenya</p>
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="subject" name="subject" placeholder="Subject" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-button">Send Message</button>
-                </form>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fab fa-whatsapp"></i>
+                            Message Us
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -1694,56 +944,39 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/50th%20a%20%287%29-yVDeBI6lWUhzIbA6HzOLelWxiBRjSW.png" alt="PWS Limited" class="logo-img">
-                <p class="footer-text">Securing your digital future with advanced cybersecurity and cloud solutions. Trust PWS Limited to protect what matters most to your business.</p>
-            </div>
-            <div class="footer-bottom">
+                <div class="footer-logo">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMjAwIDUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz4KPHN0eWxlPgouY2xzLTEgeyBmaWxsOiAjZmZkNzAwOyB9Ci5jbHMtMiB7IGZpbGw6ICNmZjk5MDA7IH0KLmNscy0zIHsgZmlsbDogI2ZmZmZmZjsgZm9udC1mYW1pbHk6IEludGVyLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDI0cHg7IGZvbnQtd2VpZ2h0OiA3MDA7IH0KPC9zdHlsZT4KPC9kZWZzPgo8cG9seWdvbiBjbGFzcz0iY2xzLTEiIHBvaW50cz0iMCwyNSAxNSwxMCAzMCwyNSAxNSw0MCAiLz4KPHN2ZyB4PSIxNSIgeT0iMTAiIHdpZHRoPSIxNSIgaGVpZ2h0PSIzMCI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjAlIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6I2ZmZDcwMDtzdG9wLW9wYWNpdHk6MSIgLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojZmY5OTAwO3N0b3Atb3BhY2l0eToxIiAvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxyZWN0IHdpZHRoPSIxNSIgaGVpZ2h0PSIzMCIgZmlsbD0idXJsKCNncmFkKSIvPgo8L3N2Zz4KPHN2ZyB4PSIzMCIgeT0iMTAiIHdpZHRoPSIxNSIgaGVpZ2h0PSIzMCI+CjxyZWN0IHdpZHRoPSIxNSIgaGVpZ2h0PSIzMCIgZmlsbD0iIzAwMDAwMCIvPgo8L3N2Zz4KPHRleHQgeD0iNjAiIHk9IjMwIiBjbGFzcz0iY2xzLTMiPlBXUyBMaW1pdGVkPC90ZXh0Pgo8L3N2Zz4=" alt="PWS Limited">
+                </div>
                 <p>&copy; 2024 PWS Limited. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Button -->
-    <div class="whatsapp-float">
-        <a href="https://wa.me/1234567890" target="_blank" class="whatsapp-button">
-            <i class="fi fi-br-comment-sms"></i>
-        </a>
-    </div>
-
-    <!-- Scroll to Top Button -->
-    <div class="scroll-to-top" id="scroll-to-top">
-        <i class="fi fi-br-angle-up"></i>
-    </div>
-
     <script>
         // Loading Screen
-        window.addEventListener('load', () => {
+        window.addEventListener('load', function() {
             const loader = document.getElementById('loader');
             setTimeout(() => {
                 loader.classList.add('hidden');
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 500);
             }, 1500);
         });
 
-        // Create Particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
 
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
 
-        // Initialize particles
-        createParticles();
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1759,364 +992,158 @@
             });
         });
 
-        // Scroll to section function
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        }
-
-        // Mobile menu toggle
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }));
-
-        // Navbar background on scroll
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
         // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate');
+                    
+                    // Special handling for staggered animations
+                    if (entry.target.classList.contains('service-card')) {
+                        const cards = entry.target.parentElement.querySelectorAll('.service-card');
+                        cards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('animate');
+                            }, index * 100);
+                        });
+                    }
+                    
+                    if (entry.target.classList.contains('benefit-item')) {
+                        const items = entry.target.parentElement.querySelectorAll('.benefit-item');
+                        items.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('animate');
+                            }, index * 150);
+                        });
+                    }
+                    
+                    if (entry.target.classList.contains('stat-item')) {
+                        const stats = entry.target.parentElement.querySelectorAll('.stat-item');
+                        stats.forEach((stat, index) => {
+                            setTimeout(() => {
+                                stat.classList.add('animate');
+                                // Start counter animation
+                                animateCounter(stat.querySelector('.stat-number'));
+                            }, index * 200);
+                        });
+                    }
+                    
+                    if (entry.target.classList.contains('contact-item')) {
+                        const items = entry.target.parentElement.querySelectorAll('.contact-item');
+                        items.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('animate');
+                            }, index * 100);
+                        });
+                    }
                 }
             });
         }, observerOptions);
 
         // Observe elements for animation
-        document.addEventListener('DOMContentLoaded', () => {
-            // Section titles and subtitles
-            const sectionTitles = document.querySelectorAll('.section-title');
-            const sectionSubtitles = document.querySelectorAll('.section-subtitle');
+        document.querySelectorAll('.section-title, .section-line, .about-description, .service-card, .benefit-item, .stat-item, .contact-item, .contact-form').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter Animation
+        function animateCounter(element) {
+            const target = parseFloat(element.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
             
-            sectionTitles.forEach(title => observer.observe(title));
-            sectionSubtitles.forEach(subtitle => observer.observe(subtitle));
-            
-            // About section elements
-            const aboutText = document.querySelector('.about-text');
-            const aboutVisual = document.querySelector('.about-visual');
-            
-            if (aboutText) observer.observe(aboutText);
-            if (aboutVisual) observer.observe(aboutVisual);
-            
-            // Stats animation
-            const statItems = document.querySelectorAll('.stat-item');
-            statItems.forEach((item, index) => {
-                item.style.transitionDelay = `${index * 0.2}s`;
-                observer.observe(item);
-            });
-            
-            // Service cards with staggered animation
-            const serviceCards = document.querySelectorAll('.service-card');
-            serviceCards.forEach((card, index) => {
-                card.style.transitionDelay = `${index * 0.15}s`;
-                observer.observe(card);
-            });
-            
-            // Feature items with staggered animation
-            const featureItems = document.querySelectorAll('.feature-item');
-            featureItems.forEach((item, index) => {
-                item.style.transitionDelay = `${index * 0.2}s`;
-                observer.observe(item);
-            });
-            
-            // Contact section elements
-            const contactInfo = document.querySelector('.contact-info');
-            const contactForm = document.querySelector('.contact-form');
-            
-            if (contactInfo) observer.observe(contactInfo);
-            if (contactForm) observer.observe(contactForm);
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                if (target === 99.9) {
+                    element.textContent = current.toFixed(1);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 31, 63, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Form submission (non-functional as requested)
+        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon via WhatsApp.');
         });
 
         // Parallax effect for hero section
-        window.addEventListener('scroll', () => {
+        window.addEventListener('scroll', function() {
             const scrolled = window.pageYOffset;
-            const heroBackground = document.querySelector('.hero-background');
-            const speed = scrolled * 0.3;
-            
-            if (heroBackground) {
-                heroBackground.style.transform = `translateY(${speed}px)`;
+            const parallax = document.querySelector('.hero-visual');
+            if (parallax) {
+                const speed = scrolled * 0.5;
+                parallax.style.transform = `translateY(${speed}px)`;
             }
         });
 
-        // Counter animation for stats
-        function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number[data-target]');
-            
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                let current = 0;
-                const increment = target / 100;
-                
-                const updateCounter = () => {
-                    if (current < target) {
-                        current += increment;
-                        counter.textContent = Math.ceil(current) + '+';
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.textContent = target + '+';
-                    }
-                };
-                
-                updateCounter();
+        // Add hover effects to service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
             });
-        }
-
-        // Trigger counter animation when about section is visible
-        const aboutSection = document.querySelector('.about');
-        if (aboutSection) {
-            const aboutObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCounters();
-                        aboutObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
             
-            aboutObserver.observe(aboutSection);
-        }
-
-        // Form submission
-        const contactForm = document.getElementById('contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                // Get form data
-                const formData = new FormData(contactForm);
-                const name = formData.get('name');
-                const email = formData.get('email');
-                const subject = formData.get('subject');
-                const message = formData.get('message');
-                
-                // Simple validation
-                if (!name || !email || !subject || !message) {
-                    alert('Please fill in all fields');
-                    return;
-                }
-                
-                // Email validation
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    alert('Please enter a valid email address');
-                    return;
-                }
-                
-                // Simulate form submission
-                const submitButton = contactForm.querySelector('.submit-button');
-                const originalText = submitButton.textContent;
-                
-                submitButton.textContent = 'Sending...';
-                submitButton.disabled = true;
-                submitButton.style.opacity = '0.7';
-                
-                setTimeout(() => {
-                    alert('Thank you for your message! We will get back to you within 24 hours.');
-                    contactForm.reset();
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                    submitButton.style.opacity = '1';
-                }, 2000);
-            });
-        }
-
-        // Scroll to top functionality
-        const scrollToTopBtn = document.getElementById('scroll-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollToTopBtn.classList.add('visible');
-            } else {
-                scrollToTopBtn.classList.remove('visible');
-            }
-        });
-
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
             });
         });
 
-        // Enhanced hover effects for buttons
-        document.querySelectorAll('.cta-button, .submit-button').forEach(button => {
-            button.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px) scale(1.05)';
-            });
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add initial animation classes
+            setTimeout(() => {
+                document.querySelector('.hero-content').classList.add('animate');
+            }, 500);
+        });
+
+        // Smooth reveal animation for sections
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.section-title, .about-description, .service-card, .benefit-item');
             
-            button.addEventListener('mouseleave', function() {
-                if (!this.disabled) {
-                    this.style.transform = 'translateY(0) scale(1)';
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('animate');
                 }
             });
-        });
-
-        // Add ripple effect to buttons
-        function createRipple(event) {
-            const button = event.currentTarget;
-            const circle = document.createElement('span');
-            const diameter = Math.max(button.clientWidth, button.clientHeight);
-            const radius = diameter / 2;
-
-            circle.style.width = circle.style.height = `${diameter}px`;
-            circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-            circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
-            circle.classList.add('ripple');
-
-            const ripple = button.getElementsByClassName('ripple')[0];
-            if (ripple) {
-                ripple.remove();
-            }
-
-            button.appendChild(circle);
         }
 
-        // Add ripple effect styles
-        const rippleStyle = document.createElement('style');
-        rippleStyle.textContent = `
-            .ripple {
-                position: absolute;
-                border-radius: 50%;
-                transform: scale(0);
-                animation: ripple 600ms linear;
-                background-color: rgba(255, 255, 255, 0.6);
-            }
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(rippleStyle);
+        window.addEventListener('scroll', revealOnScroll);
 
-        // Apply ripple effect to buttons
-        document.querySelectorAll('.cta-button, .submit-button').forEach(button => {
-            button.addEventListener('click', createRipple);
-            button.style.position = 'relative';
-            button.style.overflow = 'hidden';
+        // Add floating animation to CTA button
+        document.querySelector('.cta-button').addEventListener('mouseenter', function() {
+            this.style.animation = 'float 2s ease-in-out infinite';
         });
 
-        // Advanced scroll animations
-        let ticking = false;
-        
-        function updateScrollAnimations() {
-            const scrollTop = window.pageYOffset;
-            const windowHeight = window.innerHeight;
-            
-            // Parallax for shapes
-            const shapes = document.querySelectorAll('.shape');
-            shapes.forEach((shape, index) => {
-                const speed = 0.5 + (index * 0.1);
-                const yPos = -(scrollTop * speed);
-                shape.style.transform = `translateY(${yPos}px) rotate(${scrollTop * 0.1}deg)`;
-            });
-            
-            // Matrix background movement
-            const matrixBg = document.querySelector('.matrix-bg');
-            if (matrixBg) {
-                const offset = scrollTop * 0.2;
-                matrixBg.style.transform = `translate(${offset}px, ${offset}px)`;
-            }
-            
-            ticking = false;
-        }
-        
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(updateScrollAnimations);
-                ticking = true;
-            }
-        }
-        
-        window.addEventListener('scroll', requestTick);
-
-        // Mouse movement parallax effect
-        document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-            
-            const shapes = document.querySelectorAll('.shape');
-            shapes.forEach((shape, index) => {
-                const speed = (index + 1) * 0.5;
-                const x = (mouseX - 0.5) * speed * 20;
-                const y = (mouseY - 0.5) * speed * 20;
-                
-                shape.style.transform += ` translate(${x}px, ${y}px)`;
-            });
+        document.querySelector('.cta-button').addEventListener('mouseleave', function() {
+            this.style.animation = 'none';
         });
-
-        // Performance optimization: Throttle scroll events
-        function throttle(func, limit) {
-            let inThrottle;
-            return function() {
-                const args = arguments;
-                const context = this;
-                if (!inThrottle) {
-                    func.apply(context, args);
-                    inThrottle = true;
-                    setTimeout(() => inThrottle = false, limit);
-                }
-            }
-        }
-
-        // Apply throttling to scroll events
-        window.addEventListener('scroll', throttle(() => {
-            // Additional scroll-based animations can be added here
-        }, 16)); // ~60fps
-
-        // Initialize all animations and effects
-        document.addEventListener('DOMContentLoaded', () => {
-            // Add entrance animations to elements
-            const elementsToAnimate = document.querySelectorAll('.service-card, .feature-item, .contact-item');
-            elementsToAnimate.forEach((element, index) => {
-                element.style.animationDelay = `${index * 0.1}s`;
-            });
-            
-            // Preload images for better performance
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                const imageLoader = new Image();
-                imageLoader.src = img.src;
-            });
-        });
-
-        // Add smooth transitions for all interactive elements
-        const interactiveElements = document.querySelectorAll('button, a, .service-card, .feature-item, .tech-item, .contact-item');
-        interactiveElements.forEach(element => {
-            element.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-        });
-
-        // Console welcome message
-        console.log('%c🔒 PWS Limited - Cybersecurity & Cloud Solutions', 'color: #ff9100; font-size: 20px; font-weight: bold;');
-        console.log('%cSecuring your digital future with advanced technology', 'color: #666666; font-size: 14px;');
     </script>
 </body>
 </html>
